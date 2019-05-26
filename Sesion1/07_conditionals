@@ -1,4 +1,4 @@
-//ejemplo de Libor Learning Processing - Daniel Shiffman
+//ejemplo de Libro Learning Processing - Daniel Shiffman
 float r = 0;
 float b = 0;
 float g = 0;
