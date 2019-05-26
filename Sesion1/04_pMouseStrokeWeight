@@ -1,4 +1,4 @@
-//ejemplo de Libor Learning Processing - Daniel Shiffman
+//ejemplo de Libro Learning Processing - Daniel Shiffman
 void setup() {
   size(640, 360);
   background(102);
