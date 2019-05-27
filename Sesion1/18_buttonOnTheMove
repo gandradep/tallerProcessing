@@ -1,0 +1,72 @@
+//ejemplo modificado de Libro Learning Processing -- Daniel Shiffman
+Button[] buttons = new Button[3];
+
+void setup() {
+  size(600, 200);
+  // A loop to evenly space out the buttons along the window
+  for (int i = 0; i < buttons.length; i++) {
+    buttons[i] = new Button(0, i*height/buttons.length, 50, 50,random(1,2));
+  }
+}
+
+void draw() {
+  background(255);
+  // Show all the buttons
+  for (int i = 0; i < buttons.length; i++) {
+    buttons[i].move();
+    buttons[i].display();
+  }
+}
+
+void mousePressed() {
+  // When the mouse is pressed, we must check every single button
+  for (int i = 0; i < buttons.length; i++) {
+    buttons[i].click(mouseX, mouseY);
+  }
+}
+class Button  {    
+
+  // Button location and size
+  float x;   
+  float y;   
+  float w;   
+  float h;   
+  float s;
+  // Is the button on or off?
+  boolean on;  
+
+  // Constructor initializes all variables
+  Button(float tempX, float tempY, float tempW, float tempH, float tempSpeed)  {    
+    x  = tempX;   
+    y  = tempY;   
+    w  = tempW;   
+    h  = tempH; 
+    s = tempSpeed;
+    on = false;  // Button always starts as off
+  }    
+
+  void click(int mx, int my) {
+    // Check to see if a point is inside the rectangle
+    if (mx > x && mx < x + w && my > y && my < y + h) {
+      on = !on;
+    }
+  }
+
+  // Draw the rectangle
+  void display() {
+    rectMode(CORNER);
+    stroke(0);
+    // The color changes based on the state of the button
+    if (on) {
+      fill(175);
+    } else {
+      fill(0);
+    }
+    rect(x,y,w,h);
+  }
+  void move(){
+  x = x+s;
+  if(x>width){
+  x=0;}
+  }
+} 
