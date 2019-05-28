@@ -1,0 +1,30 @@
+//ejemplo modificado del Libro Learning Processing -- Daniel Shiffman
+PImage img;
+float x,y;
+float rot;
+float rotS = 0.01;
+float s =0.8;
+float speed =1;
+
+
+void setup(){
+size(400,400);
+img = loadImage("logo.png");
+img.resize(int(img.width*s),int(img.height*s));
+x=img.width/2;
+y=height/2;
+rot=0;
+imageMode(CENTER);
+}
+void draw(){
+  background(255,255,0);
+  translate(x,y);
+  rotate(rot);
+image(img, 0,0);
+x+=speed;
+rot+=rotS;
+if(x>width-img.width/2||x<img.width/2){
+speed *=-1;
+rotS*=-1;
+}
+}
