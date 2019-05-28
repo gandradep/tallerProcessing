@@ -1,0 +1,9 @@
+PImage img;
+
+void setup(){
+size(300,300);
+img = loadImage("logo.png");
+}
+void draw(){
+image(img, 0,0 ,mouseX,mouseY);
+}
