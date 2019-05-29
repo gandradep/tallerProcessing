@@ -1,0 +1,36 @@
+PImage monte, beach;
+float x,y,r,g,b;
+float rot;
+float rotS = 0.01;
+float s =0.8;
+float speed =1;
+
+
+
+void setup(){
+size(400,400);
+monte = loadImage("monte.jpg");
+beach = loadImage("beach.jpg");
+monte.resize(width,height);
+beach.resize(width,height);
+
+}
+void draw(){
+  background(beach);
+  r=map(mouseX,0,width,0,255);
+  g=map(mouseY,0,height,0,255);
+  
+tint(r,g,b,100);
+image(monte, 0,0);
+
+}
+void mousePressed(){
+ if (mouseButton == LEFT) {
+    b+=25;
+  } else {
+    b-=25;
+  }
+  b=constrain(b,0,255);
+  println(b);
+
+}
