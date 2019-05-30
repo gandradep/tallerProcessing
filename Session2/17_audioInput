@@ -1,0 +1,60 @@
+import processing.sound.*;
+
+
+
+AudioIn input;
+Amplitude rms;
+
+int scale=1;
+
+
+  
+
+void setup() {
+ size(500,500);
+  
+
+   background(0);
+   
+   //Create an Audio input and grab the 1st channel
+    input = new AudioIn(this, 0);
+    
+    // start the Audio Input
+    input.start();
+    
+    // create a new Amplitude analyzer
+    rms = new Amplitude(this);
+    
+    // Patch the input to an volume analyzer
+    rms.input(input);
+rectMode(CENTER);
+  
+} 
+
+void draw() {
+ // adjust the volume of the audio input
+    input.amp(map(mouseY, 0, height, 0.1, 1.0));
+    
+    // rms.analyze() return a value between 0 and 1. To adjust
+    // the scaling and mapping of an ellipse we scale from 0 to 0.5
+    scale=int(map(rms.analyze(), 0, 0.5, 1, 500));
+
+    
+ for(int x = 10;x<width;x+=50){
+   
+   pushMatrix();
+   translate(x,width/2);
+   rotate(radians(scale));
+   stroke(34,53,73);
+    
+    fill(255,5);
+    strokeWeight(1);
+    rect(0,0,  scale,scale);
+    //int myRotation = scale/17; //pick a random rotation in degrees
+     //rotate(radians(myRotation));
+    popMatrix();  
+      
+ }
+
+
+}
