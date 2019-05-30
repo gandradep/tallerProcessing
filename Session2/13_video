@@ -1,0 +1,17 @@
+
+import processing.video.*;
+
+Capture vid;
+
+void setup(){
+size(320,240);
+vid = new Capture(this,320,240,30);
+vid.start();
+}
+
+void draw(){
+if(vid.available()){
+vid.read();
+}
+image(vid,0,0);
+}
