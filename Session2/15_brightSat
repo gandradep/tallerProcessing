@@ -1,0 +1,58 @@
+import processing.video.*;
+
+
+//ejemplo libro Learning Processing - Daniel Shiffman
+// Size of each cell in the grid
+int cellSize = 20;
+// Number of columns and rows in our system
+int cols, rows;
+// Variable for capture device
+Capture video;
+
+
+void setup() {
+  size(640, 480);
+  frameRate(30);
+  cols = width / cellSize;
+  rows = height / cellSize;
+  colorMode(RGB, 255, 255, 255, 100);
+
+ 
+  video = new Capture(this, width, height);
+  
+  // Start capturing the images from the camera
+  video.start();  
+  
+  background(0);
+}
+
+
+void draw() { 
+  background(0);
+  if (video.available()) {
+    video.read();}
+    video.loadPixels();
+  
+    // Begin loop for columns
+    for (int i = 0; i < cols; i++) {
+      // Begin loop for rows
+      for (int j = 0; j < rows; j++) {
+      
+        // Where are we, pixel-wise?
+        int x = i*cellSize;
+        int y = j*cellSize;
+        int loc = (video.width-x-1) + y*video.width; // Reversing x to mirror the image
+      
+       
+        color c = video.pixels[loc];
+      
+       
+       float sz = (brightness(c)/255)*cellSize;
+        fill(c);
+        noStroke();
+        // Rects are larger than the cell for some overlap
+        rect(x,y, sz, sz);
+    
+      }
+    }
+  }
