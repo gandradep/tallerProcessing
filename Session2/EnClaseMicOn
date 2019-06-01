@@ -1,0 +1,32 @@
+
+import processing.sound.*;
+
+AudioIn input;
+Amplitude loudness;
+PImage img;
+float x;
+
+void setup() {
+  size(300, 300);
+  img = loadImage("1.jpg");
+  img.resize(width/2, height/2);
+  // objetos de audio
+  input = new AudioIn(this, 0);
+  input.start();
+  loudness = new Amplitude(this);
+
+  // Patch the input to the volume analyzer
+  loudness.input(input);
+}
+void draw() {
+  float volume = loudness.analyze();
+  println(volume);
+  int size = int(map(volume, 0, 0.5, 1, 255));
+  tint(255,255-size,255);
+  image(img, x,0);
+  if(volume>0.25){
+  x++;}
+  if(x>width-img.width){
+  x=0;
+  }
+}
