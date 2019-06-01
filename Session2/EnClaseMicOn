@@ -1,13 +1,24 @@
 
 import processing.sound.*;
-
-AudioIn input;
+//---------------
+import codeanticode.syphon.*;
+SyphonServer server;
+//-------
+AudioIn input;  
 Amplitude loudness;
 PImage img;
 float x;
-
+void settings() {
+  size(300,300);
+  //----
+  PJOGL.profile=1;
+ //-----
+  
+}
 void setup() {
-  size(300, 300);
+  //-------
+  server = new SyphonServer(this, "Processing Syphon");
+  //----
   img = loadImage("1.jpg");
   img.resize(width/2, height/2);
   // objetos de audio
@@ -29,4 +40,8 @@ void draw() {
   if(x>width-img.width){
   x=0;
   }
+  
+  //----
+  server.sendScreen();// para transmitir syphon
+  //---
 }
