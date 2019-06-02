@@ -9,7 +9,8 @@ Amplitude loudness;
 PImage img;
 float x;
 void settings() {
-  size(300,300);
+//hay que poner p3d para que funcione la libreria de syphon
+  size(300,300,P3D);
   //----
   PJOGL.profile=1;
  //-----
